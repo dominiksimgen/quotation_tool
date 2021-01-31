@@ -4,13 +4,10 @@ from read_input import Read_input
 
 
 
+form_template = "PG_Combined Spot Quotation  Booking Form_v 1_9_uprotected.xlsx"
 new_request = Request()
-new_form = Form_Output()
+new_form = Form_Output(form_template)
+new_form.save_output_to_excel(new_request.reference_No)
 
-
-#new_form.sheet1['A4'].value = "test"
-#print(new_form.sheet1['A28'].value)
-
-#new_form.wb.save("excel_files/new.xlsx")
-
-print(list(new_request.material_dict.keys())[4])
+for i in range(0, len(new_request.material_object_array)):
+    print(vars(new_request.material_object_array[i]))

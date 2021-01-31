@@ -1,4 +1,5 @@
-excel_files/
+excel_files/*
+output/*
 venv/
 .DS_Store
 workspace.code-workspace

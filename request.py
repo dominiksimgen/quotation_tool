@@ -1,11 +1,12 @@
 
-import material, functions, datetime
+import functions, datetime
 from read_input import Read_input
+from material import Material
 
 class Request:
     def __init__(self):
         self.input = Read_input()
-        self.reference_ID = "TestNo_0101_1999"
+        self.reference_No = "TestNo_0101_1999"
         self.requester_name = self.input.requester_name
         self.requester_contacts = self.input.requester_contacts
         self.stackable = self.input.stackable
@@ -16,6 +17,10 @@ class Request:
         self.destination_code = self.input.destination_code
         self.incoterm = "FCA"
         self.material_dict = self.input.material_dict
+        self.material_object_array = []
+        for key, value in self.material_dict.items():
+            self.material_object_array.append( Material( key, value))
+
 
 
 
