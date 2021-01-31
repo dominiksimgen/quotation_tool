@@ -14,6 +14,7 @@ class Request:
         self.li_ion = "Yes"
         self.ready_date = functions.date_by_adding_business_days(datetime.date.today(),5)
         self.destination = "A999"
+        self.incoterm = "FCA"
 
 
 
