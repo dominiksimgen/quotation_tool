@@ -1,5 +1,5 @@
-excel_files/*
-output/*
+excel_files/*.xlsx
+output/*.xlsx
 venv/
 .DS_Store
 workspace.code-workspace
