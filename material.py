@@ -8,7 +8,7 @@ class Material:
         self.packaging = "pallet"
         self.pallet_length = 80
         self.pallet_width = 120
-        self.pallet_heigh = 159
+        self.pallet_height = 159
 
 
 # call the APO interface class from here!
