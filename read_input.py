@@ -1,7 +1,7 @@
 import openpyxl, os
 
 
-class Read_input:
+class Read_excel_input:
     def __init__(self):
         self.here = os.path.dirname(os.path.abspath(__file__))
         os.chdir(self.here)

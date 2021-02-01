@@ -1,11 +1,11 @@
 
 import functions, datetime
-from read_input import Read_input
+from read_input import Read_excel_input
 from material import Material
 
 class Request:
     def __init__(self):
-        self.input = Read_input()
+        self.input = Read_excel_input()
         self.reference_No = "TestNo_0101_1999"
         self.requester_name = self.input.requester_name
         self.requester_contacts = self.input.requester_contacts

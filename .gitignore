@@ -3,3 +3,4 @@ output/*
 venv/
 .DS_Store
 workspace.code-workspace
+__pycache__/
