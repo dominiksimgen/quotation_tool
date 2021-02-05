@@ -1,5 +1,10 @@
 from request import Request
 from form_output import Form_Output
+import sys
+
+if not sys.warnoptions:
+    import warnings
+    warnings.simplefilter("ignore")
 
 
 
