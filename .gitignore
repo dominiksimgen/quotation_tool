@@ -4,4 +4,4 @@ venv/
 .DS_Store
 workspace.code-workspace
 __pycache__/
-database/*.json
+database/locations.json

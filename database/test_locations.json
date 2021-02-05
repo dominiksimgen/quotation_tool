@@ -1,0 +1,26 @@
+{
+    "locations": [
+        {
+            "Plant Code": "A001",
+            "Company Name": "DC A",
+            "Incoterm": "FCA",
+            "Airport": "Francis International",
+            "Address": {
+                "Street": "Some Street 12",
+                "Postal Code / City": "10001 /  Liberty City",
+                "Country": "USA"
+            }
+        },
+        {
+            "Plant Code": "Z999",
+            "Company Name": "DC B",
+            "Incoterm": "DAP",
+            "Airport": "Los Santos International",
+            "Address": {
+                "Street": "Some Street 89",
+                "Postal Code / City": "90009 / Los Santos",
+                "Country": "USA"
+            }
+        } 
+    ]
+}
