@@ -17,10 +17,21 @@ class Form_Output:
         self.sheet1['B52'].value = request.dangerous_goods
         self.sheet1['B56'].value = request.li_ion
         self.sheet1['H68'].value = request.ready_date
+
+        #shipper information:
+        self.sheet1['B78'].value = request.shipper_company_name
+        self.sheet1['B79'].value = request.shipper_address['Street']
+        self.sheet1['B80'].value = request.shipper_address['Postal Code / City']
+        self.sheet1['B81'].value = request.shipper_address['Country']
+        #destination information:
         self.sheet1['B59'].value = request.incoterm
-        self.sheet1['D59'].value = request.destination_code
-        self.sheet1['B78'].value = request.shipper_code
-        self.sheet1['B84'].value = request.destination_code
+        self.sheet1['D59'].value = request.airport
+        self.sheet1['B84'].value = request.destination_company_name
+        self.sheet1['B85'].value = request.destination_address['Street']
+        self.sheet1['B86'].value = request.destination_address['Postal Code / City']
+        self.sheet1['B87'].value = request.destination_address['Country']
+
+
         self.fill_material_list(request)
     
     def fill_material_list(self,request):

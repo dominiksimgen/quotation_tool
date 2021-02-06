@@ -1,10 +1,11 @@
 import json, os
 
 class Location_Masterdata:
-    def __init__(self):
+    def __init__(self, locations_database):
         self.here = os.path.dirname(os.path.abspath(__file__))
         os.chdir(self.here)
-        self.f = open("database/test_locations.json", "r")
+        self.json_file = locations_database
+        self.f = open(f"database/{self.json_file}", "r")
         self.data = json.load(self.f)
         self.f.close()
 
@@ -18,5 +19,4 @@ class Location_Masterdata:
         if index is not None:
             return self.data['locations'][index]
         else:
-            raise Exception('\n\nCheck input. Plantcode(s) not found.\nIf input correct, make sure that plant is maintained in "database/test_locations.json"\n')
-        
+            raise Exception(f'\n\nCheck input. Plantcode(s) not found.\nIf input correct, make sure that plant is maintained in "database/{self.json_file}"\n')
