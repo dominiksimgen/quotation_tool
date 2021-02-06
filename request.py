@@ -24,8 +24,7 @@ class Request:
         self.airport = self.locations.get_location_object(self.destination_code)['Airport']
         self.destination_company_name = self.locations.get_location_object(self.destination_code)['Company Name']
         self.destination_address = self.locations.get_location_object(self.destination_code)['Address']
-        
-        self.reference_ID = functions.create_unique_reference(self.locations.get_location_object(self.destination_code)['Address']['Country'])
+        self.reference_ID = functions.create_unique_reference(self.locations.get_location_object(self.destination_code)['Address']['Country'].replace(" ","_"))
         #list of shipment items:
         self.material_dict = self.input.material_dict
         self.material_object_array = []

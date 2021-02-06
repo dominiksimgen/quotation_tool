@@ -8,9 +8,9 @@ if not sys.warnoptions:
 
 
 
-
+print("\ncreating quotation form...\n")
 form_template = "PG_Combined Spot Quotation  Booking Form_v 1_9_unprotected.xlsx"
-location_database = "test_locations.json"
+location_database = "locations.json"
 new_request = Request(location_database)
 new_form = Form_Output(form_template)
 new_form.fill_form(new_request)

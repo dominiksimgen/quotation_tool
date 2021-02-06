@@ -12,8 +12,8 @@ class Read_excel_input:
         self.stackable = self.sheet1['B3'].value
         self.dangerous_goods = self.sheet1['B4'].value
         self.li_ion = self.sheet1['B5'].value
-        self.shipper_code = self.sheet1['B6'].value
-        self.destination_code = self.sheet1['B7'].value
+        self.shipper_code = str(self.sheet1['B6'].value)
+        self.destination_code = str(self.sheet1['B7'].value)
         self.material_dict = {}
         for i in range(10,16):
             if ((self.sheet1.cell(i,1).value) and (self.sheet1.cell(i,2).value) is not None):
