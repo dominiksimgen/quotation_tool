@@ -9,7 +9,7 @@ class Form_Output:
         self.sheet1 = self.wb[self.wb.sheetnames[0]]
 
     def fill_form(self, request):
-        self.sheet1['B11'].value = request.reference_No
+        self.sheet1['B11'].value = str(request.reference_ID)[0:16]
         self.sheet1['H11'].value = request.requester_name
         self.sheet1['A18'].value = request.requester_name
         self.sheet1['H12'].value = request.requester_contacts
@@ -30,8 +30,7 @@ class Form_Output:
         self.sheet1['B85'].value = request.destination_address['Street']
         self.sheet1['B86'].value = request.destination_address['Postal Code / City']
         self.sheet1['B87'].value = request.destination_address['Country']
-
-
+        #list of shipment items:
         self.fill_material_list(request)
     
     def fill_material_list(self,request):
@@ -53,5 +52,5 @@ class Form_Output:
             self.material_quantity_row_counter += 3
         
 
-    def save_output_to_excel(self, reference_No):
-        self.wb.save(f"output/Ref_{reference_No}_PG_Combined Spot Quotation  Booking Form.xlsx")
+    def save_output_to_excel(self, reference_ID):
+        self.wb.save(f"output/{reference_ID}.xlsx")

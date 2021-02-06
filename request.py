@@ -8,7 +8,6 @@ class Request:
     def __init__(self, locations_database):
         self.input = Read_excel_input()
         self.locations = Location_Masterdata(locations_database)
-        self.reference_No = "TestNo_0101_1999"
         self.requester_name = self.input.requester_name
         self.requester_contacts = self.input.requester_contacts
         self.stackable = self.input.stackable
@@ -25,6 +24,8 @@ class Request:
         self.airport = self.locations.get_location_object(self.destination_code)['Airport']
         self.destination_company_name = self.locations.get_location_object(self.destination_code)['Company Name']
         self.destination_address = self.locations.get_location_object(self.destination_code)['Address']
+        
+        self.reference_ID = functions.create_unique_reference(self.locations.get_location_object(self.destination_code)['Address']['Country'])
         #list of shipment items:
         self.material_dict = self.input.material_dict
         self.material_object_array = []

@@ -14,5 +14,5 @@ location_database = "test_locations.json"
 new_request = Request(location_database)
 new_form = Form_Output(form_template)
 new_form.fill_form(new_request)
-new_form.save_output_to_excel(new_request.reference_No)
-print("\nNew quotation form saved.\n")
+new_form.save_output_to_excel(new_request.reference_ID)
+print(f"\nNew quotation form saved with reference:\n{new_request.reference_ID}\n")
