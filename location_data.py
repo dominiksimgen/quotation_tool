@@ -9,6 +9,7 @@ class Location_Masterdata:
         self.data = json.load(self.f)
         self.f.close()
 
+    # locates the location position within the JSON
     def get_index_from_plant_code(self, plant_code):
         for i in range (0, len(self.data['locations'])):
             if self.data['locations'][i]['Plant Code'] == plant_code:

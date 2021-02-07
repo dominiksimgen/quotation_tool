@@ -29,7 +29,7 @@ class Request:
         self.material_dict = self.input.material_dict
         self.material_object_array = []
         for key, value in self.material_dict.items():
-            self.material_object_array.append( Material( key, value))
+            self.material_object_array.append( Material( key, value ))
 
 
 
