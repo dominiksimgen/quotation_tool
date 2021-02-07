@@ -7,8 +7,11 @@ class Logistical_Material_Data:
     def __init__(self,fpc):
         locale.setlocale(locale.LC_ALL, 'nl_NL')
         self.read_APO_data(fpc)
-        print(locale.atof(self.LE_height))
-        print(locale.atof(self.LE_weight))
+        print(self.LE_height)
+        print(self.LE_weight)
+        print(self.P2_height)
+        print(self.P2_weight)
+        print("\n")
 
 
 
@@ -52,16 +55,33 @@ class Logistical_Material_Data:
             session.findById("wnd[0]/usr/subRIDER:/SAPAPO/SAPLMAT_MASTER:0150/tabsTABS/tabpUNIT").select()
             general_id = "wnd[0]/usr/subRIDER:/SAPAPO/SAPLMAT_MASTER:0150/tabsTABS/tabpUNIT/ssubTABS_AREA_MAT:/SAPAPO/SAPLMAT_MASTER:2600/tbl/SAPAPO/SAPLMAT_MASTERTC_ME_2600/"
             
+            # reads weight and height for unit of measure "LE" (layer of a pallet)
             row_index_LE = 0
             unit_of_measure = None
             while not(unit_of_measure == 'LE'):
                 unit_of_measure = session.findById(f"{general_id}ctxt/SAPAPO/MATIO-MEINH[1,{row_index_LE}]").text
                 row_index_LE += 1
             row_index_LE -= 1
-            self.LE_weight = session.findById(f"{general_id}txt/SAPAPO/MATIO-BRGEW_TC[8,{row_index_LE}]").text
-            self.LE_height = session.findById(f"{general_id}txt/SAPAPO/MATIO-HOEHE[16,{row_index_LE}]").text
+            self.LE_weight = locale.atof(session.findById(f"{general_id}txt/SAPAPO/MATIO-BRGEW_TC[8,{row_index_LE}]").text)
+            if (session.findById(f"{general_id}ctxt/SAPAPO/MATIO-GEWEI_TC[10,{row_index_LE}]").text) == 'G': #checks if unit of weight is in gramm
+                self.LE_weight = self.LE_weight / 1000 #converts to KG
+            self.LE_height = locale.atof(session.findById(f"{general_id}txt/SAPAPO/MATIO-HOEHE[16,{row_index_LE}]").text)
             
+            # reads weight and height for unit of measure "P2" (standard pallet)
             row_index_P2 = 0
+            unit_of_measure = None
+            while not(unit_of_measure == 'P2'):
+                unit_of_measure = session.findById(f"{general_id}ctxt/SAPAPO/MATIO-MEINH[1,{row_index_P2}]").text
+                row_index_P2 += 1
+            row_index_P2 -= 1
+            self.P2_weight = locale.atof(session.findById(f"{general_id}txt/SAPAPO/MATIO-BRGEW_TC[8,{row_index_P2}]").text)
+            if (session.findById(f"{general_id}ctxt/SAPAPO/MATIO-GEWEI_TC[10,{row_index_P2}]").text) == 'G': #checks if unit of weight is in gramm
+                self.P2_weight = self.P2_weight / 1000 #converts to KG
+            self.P2_height = locale.atof(session.findById(f"{general_id}txt/SAPAPO/MATIO-HOEHE[16,{row_index_P2}]").text)
+
+
+
+
             B = session.findById(f"{general_id}txt/SAPAPO/MATIO-BRGEW_TC[8,0]").text
             C = session.findById(f"{general_id}txt/SAPAPO/MATIO-EAN11[5,0]").text
             
