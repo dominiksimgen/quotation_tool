@@ -6,11 +6,9 @@ import locale   #https://www.delftstack.com/de/howto/python/how-to-convert-strin
 class Logistical_Material_Data:
     def __init__(self,fpc):
         locale.setlocale(locale.LC_ALL, 'nl_NL')
+        print("Reading material data from KHP...")
         self.read_APO_data(fpc)
-        print(self.LE_height)
-        print(self.LE_weight)
-        print(self.P2_height)
-        print(self.P2_weight)
+        print(f"{fpc} {self.product_description} \ndone")
         print("\n")
 
 
@@ -53,6 +51,7 @@ class Logistical_Material_Data:
             session.findById("wnd[0]/usr/radDV_GLOBAL_DATA").setFocus()
             session.findById("wnd[0]/usr/btnSHOW").press()
             session.findById("wnd[0]/usr/subRIDER:/SAPAPO/SAPLMAT_MASTER:0150/tabsTABS/tabpUNIT").select()
+            self.product_description = session.findById("wnd[0]/usr/subHEAD:/SAPAPO/SAPLMAT_MASTER:1201/txt/SAPAPO/MATIO-MAKTX").text
             general_id = "wnd[0]/usr/subRIDER:/SAPAPO/SAPLMAT_MASTER:0150/tabsTABS/tabpUNIT/ssubTABS_AREA_MAT:/SAPAPO/SAPLMAT_MASTER:2600/tbl/SAPAPO/SAPLMAT_MASTERTC_ME_2600/"
             
             # reads weight and height for unit of measure "LE" (layer of a pallet)
@@ -65,7 +64,8 @@ class Logistical_Material_Data:
             self.LE_weight = locale.atof(session.findById(f"{general_id}txt/SAPAPO/MATIO-BRGEW_TC[8,{row_index_LE}]").text)
             if (session.findById(f"{general_id}ctxt/SAPAPO/MATIO-GEWEI_TC[10,{row_index_LE}]").text) == 'G': #checks if unit of weight is in gramm
                 self.LE_weight = self.LE_weight / 1000 #converts to KG
-            self.LE_height = locale.atof(session.findById(f"{general_id}txt/SAPAPO/MATIO-HOEHE[16,{row_index_LE}]").text)
+            self.LE_items = int(locale.atof(session.findById(f"{general_id}txt/SAPAPO/MATIO-UMREZ[3,{row_index_LE}]").text))
+            self.LE_height = (locale.atof(session.findById(f"{general_id}txt/SAPAPO/MATIO-HOEHE[16,{row_index_LE}]").text)) / 10
             
             # reads weight and height for unit of measure "P2" (standard pallet)
             row_index_P2 = 0
@@ -77,14 +77,9 @@ class Logistical_Material_Data:
             self.P2_weight = locale.atof(session.findById(f"{general_id}txt/SAPAPO/MATIO-BRGEW_TC[8,{row_index_P2}]").text)
             if (session.findById(f"{general_id}ctxt/SAPAPO/MATIO-GEWEI_TC[10,{row_index_P2}]").text) == 'G': #checks if unit of weight is in gramm
                 self.P2_weight = self.P2_weight / 1000 #converts to KG
-            self.P2_height = locale.atof(session.findById(f"{general_id}txt/SAPAPO/MATIO-HOEHE[16,{row_index_P2}]").text)
+            self.P2_height = (locale.atof(session.findById(f"{general_id}txt/SAPAPO/MATIO-HOEHE[16,{row_index_P2}]").text)) / 10
 
-
-
-
-            B = session.findById(f"{general_id}txt/SAPAPO/MATIO-BRGEW_TC[8,0]").text
-            C = session.findById(f"{general_id}txt/SAPAPO/MATIO-EAN11[5,0]").text
-            
+      
 
         except:
             print(sys.exc_info()[0])
@@ -94,8 +89,3 @@ class Logistical_Material_Data:
             connection = None
             application = None
             SapGuiAuto = None
-
-
-new_material_data_1 = Logistical_Material_Data(81739020)
-new_material_data_2 = Logistical_Material_Data(81731105)
-#print(read_APO_data(81742965))

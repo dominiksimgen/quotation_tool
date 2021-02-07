@@ -58,13 +58,13 @@ class Form_Output:
         self.material_description_row_counter = self.material_row_counter + 1
         self.material_quantity_row_counter = self.material_row_counter + 2
         for material in request.material_object_array:
-            self.sheet1.cell(self.material_row_counter,1).value = material.pallets
+            self.sheet1.cell(self.material_row_counter,1).value = material.pallet_count
             self.sheet1.cell(self.material_row_counter,2).value = material.weight
             self.sheet1.cell(self.material_row_counter,3).value = material.fpc
             self.sheet1.cell(self.material_row_counter,5).value = material.packaging
             self.sheet1.cell(self.material_row_counter,7).value = material.pallet_length
             self.sheet1.cell(self.material_row_counter,9).value = material.pallet_width
-            self.sheet1.cell(self.material_row_counter,11).value = material.pallet_height
+            self.sheet1.cell(self.material_row_counter,11).value = material.pallet_height_airfreight
             self.sheet1.cell(self.material_description_row_counter, 3).value = material.description
             self.sheet1.cell(self.material_quantity_row_counter, 3).value = material.quantity
             self.material_row_counter += 3
