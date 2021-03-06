@@ -6,3 +6,4 @@ workspace.code-workspace
 __pycache__/
 database/locations.json
 ~$input.xlsx
+.idea/
