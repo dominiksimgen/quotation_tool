@@ -73,9 +73,12 @@ class Logistical_Material_Data:
             # reads weight and height for unit of measure "P2" (standard pallet)
             row_index_P2 = 0
             unit_of_measure = None
-            while not(unit_of_measure == 'P2'):
+            while not(unit_of_measure == 'P2' and row_index_P2 != 14):
                 unit_of_measure = session.findById(f"{general_id}ctxt/SAPAPO/MATIO-MEINH[1,{row_index_P2}]").text
                 row_index_P2 += 1
+                if (row_index_P2 == 14):
+                    session.findById(general_id).verticalScrollbar.position = 14
+                    row_index_P2 = 0
             row_index_P2 -= 1
             self.P2_weight = locale.atof(session.findById(f"{general_id}txt/SAPAPO/MATIO-BRGEW_TC[8,{row_index_P2}]").text)
             if (session.findById(f"{general_id}ctxt/SAPAPO/MATIO-GEWEI_TC[10,{row_index_P2}]").text) == 'G': #checks if unit of weight is in gramm

@@ -1,4 +1,4 @@
-#version: 1.0.0
+#version: 1.0.1
 
 from request import Request
 from excel_interface import Form_Output
@@ -24,3 +24,4 @@ def Main():
 
 if __name__ == "__main__":
     Main()
+    input("Press 'Enter' key to exit.")
