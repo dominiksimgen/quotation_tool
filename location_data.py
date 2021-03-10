@@ -20,4 +20,5 @@ class Location_Masterdata:
         if index is not None:
             return self.data['locations'][index]
         else:
-            raise Exception(f'\n\nCheck input. Plantcode(s) not found.\nIf input correct, make sure that plant is maintained in "database/{self.json_file}"\n')
+            print(f'\n***************\nError:\n\n\nCheck input. Plantcode(s) not found.\nIf input correct, make sure that plant is maintained in "database/{self.json_file}"\n***************\n')
+            input("Press 'Enter' key to exit.")

@@ -89,7 +89,8 @@ class Logistical_Material_Data:
 
         except:
             print(sys.exc_info()[0]) #throws excepion, if cannot connect to SAP APO. 
-            print("\n***************\nError:\nUnable to connect to APO/KHP session! Check if logged in.\n\n***************\n")
+            print("\n***************\nError:\nUnable to connect to or interact with APO/KHP session! \nCheck if logged in and execute app once more. If the issue persists, please check with the author of the app.\n\n***************\n")
+            input("Press 'Enter' key to exit.")
 
         finally:
             session = None
