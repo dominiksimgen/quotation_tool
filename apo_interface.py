@@ -77,6 +77,8 @@ class Logistical_Material_Data:
                 unit_of_measure = session.findById(f"{general_id}ctxt/SAPAPO/MATIO-MEINH[1,{row_index_P2}]").text
                 row_index_P2 += 1
                 if (row_index_P2 == 14):
+                    if (unit_of_measure == 'P2'):
+                        break
                     session.findById(general_id).verticalScrollbar.position = 14
                     row_index_P2 = 0
             row_index_P2 -= 1
